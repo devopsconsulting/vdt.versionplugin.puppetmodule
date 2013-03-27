@@ -14,8 +14,9 @@ def build_package(version):
     """
     log.debug("Building puppet module version {0} with fpm.".format(version))
     with version.checkout_tag:
-        puppetmodule_name = basename(getcwd())
-        create_package(puppetmodule_name, str(version), version.extra_args)
+        full_name = basename(getcwd())
+        short_name = full_name.replace('puppet-', '')
+        create_package(full_name, short_name, str(version), version.extra_args)
 
 
 def set_package_version(version):
