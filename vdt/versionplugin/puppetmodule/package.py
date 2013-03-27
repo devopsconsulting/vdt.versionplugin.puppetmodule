@@ -42,4 +42,4 @@ def set_package_version(version):
     package can be built (changelog, version written somewhere etc.)
     that code should go here
     """
-    log.debug("set_package_version is not implemented for fpm")
+    log.debug("set_package_version is not implemented for puppetmodule")
