@@ -15,6 +15,8 @@ def _build_config_files(name):
         for filename in filenames:
             if dirpath.startswith('.'):
                 continue
+            if filename.startswith('._'):
+                continue
             if filename.startswith('.git'):
                 excludes[filename] = True
             if dirpath.startswith('spec') or dirpath.startswith('test'):
@@ -32,7 +34,7 @@ def create_package(full_name, short_name, version, extra_args):
     config_files, excludes, files = _build_config_files(short_name)
     cmd = ['fpm', '-s', 'dir',
            '--depends=puppet-common',
-           '--prefix=/etc/puppet/modules',
+           '--prefix=/etc/puppet/modules/%s' % short_name,
            '--architecture=all',
            '--name=%s' % full_name,
            '--version=%s' % version] + config_files + excludes + extra_args + files
