@@ -18,7 +18,7 @@ def _build_config_files(name):
             if filename.startswith('._'):
                 continue
             if filename.startswith('.git'):
-                excludes[filename] = True
+                excludes['--exclude=%s' % filename] = True
             if dirpath.startswith('spec') or dirpath.startswith('test'):
                 excludes['--exclude=%s' % join(dirpath, '*')] = True
             else:
